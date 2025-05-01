@@ -16,9 +16,11 @@ A full-stack application that generates professional cover letters using AI base
 ### Frontend
 - React + TypeScript
 - Tailwind CSS
+- Tanstack Query
 - React Router
 - react-hot-toast
 - jsPDF (for PDF generation)
+- React Icons
 
 ### Backend
 - Node.js + Express

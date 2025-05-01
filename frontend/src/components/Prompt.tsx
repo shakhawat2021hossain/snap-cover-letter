@@ -4,21 +4,22 @@ import toast from "react-hot-toast";
 import { formInfo } from "../types/formInfo";
 import { FiSend } from "react-icons/fi";
 import { ImSpinner8 } from "react-icons/im";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Prompt = () => {
-    const [coverLetters, setCoverLetters] = useState<string>("")
+    const navigate = useNavigate();
     const { mutateAsync, isPending } = useMutation({
         mutationFn: async (info: formInfo) => {
             const { data } = await axios.post('http://localhost:5000/generate', info);
-            setCoverLetters(data.coverLetters);
             return data;
         },
-        onSuccess: () => {
-            toast.success("Cover letter generated successfully!");
+        onSuccess: (data) => {
+            toast.success("Cover letters generated successfully!");
+
+            navigate('/templates', { state: { coverLetters: data.coverLetters } });
         },
         onError: () => {
-            toast.error("Failed to generate cover letter. Please try again.");
+            toast.error("Failed to generate cover letters. Please try again.");
         }
     });
 
@@ -28,17 +29,15 @@ const Prompt = () => {
         const jobDesc = (form.jobDesc as HTMLTextAreaElement).value;
         const resume = (form.resume as HTMLTextAreaElement).value;
 
-        const data = { jobDesc, resume };
-        console.log(data);
         try {
-            await mutateAsync(data);
+            await mutateAsync({ jobDesc, resume });
         } catch (err) {
             console.log(err);
         }
     };
-    console.log(coverLetters);
+
     return (
-        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md my-8">
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="text-center mb-8">
                     <h1 className="text-3xl font-bold text-gray-800 mb-2">Cover Letter Generator</h1>
@@ -79,7 +78,7 @@ const Prompt = () => {
                     <button
                         type="submit"
                         disabled={isPending}
-                        className={`w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition flex items-center justify-center space-x-2 ${isPending ? "opacity-75 cursor-not-allowed" : ""
+                        className={`w-full cursor-pointer py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition flex items-center justify-center space-x-2 ${isPending ? "opacity-75 cursor-not-allowed" : ""
                             }`}
                     >
                         {isPending ? (

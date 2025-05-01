@@ -1,9 +1,7 @@
 const express = require("express")
 const cors = require("cors")
-const jwt = require("jsonwebtoken")
 const cookeieParser = require("cookie-parser")
 const mongoose = require("mongoose")
-const axios = require("axios")
 const { GoogleGenAI } = require("@google/genai")
 const app = express()
 
@@ -17,6 +15,8 @@ const corsOptions = {
     origin: [
         'http://localhost:5173',
         'http://localhost:5174',
+        'https://snap-cover-let.web.app',
+        'https://snap-cover-letter.netlify.app'
     ],
     credentials: true,
     optionSuccessStatus: 200,
@@ -78,10 +78,8 @@ based on the following resume and job description. Return the response as a JSON
             ],
         });
 
-        console.log(response.text);
+        // console.log(response.text);
         let cleanText = response.text.replace(/```json|```/g, '').trim();
-        console.log(cleanText);
-
 
         const result = JSON.parse(cleanText)
         res.json({ coverLetters: result })

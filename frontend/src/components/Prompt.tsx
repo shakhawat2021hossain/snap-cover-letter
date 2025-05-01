@@ -10,7 +10,7 @@ const Prompt = () => {
     const navigate = useNavigate();
     const { mutateAsync, isPending } = useMutation({
         mutationFn: async (info: formInfo) => {
-            const { data } = await axios.post('http://localhost:5000/generate', info);
+            const { data } = await axios.post('https://sanp-cover-letter.vercel.app/generate', info);
             return data;
         },
         onSuccess: (data) => {

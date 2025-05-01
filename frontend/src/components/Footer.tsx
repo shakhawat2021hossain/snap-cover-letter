@@ -7,7 +7,7 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
                         <h3 className="text-sm font-semibold text-gray-500 tracking-wider uppercase">
-                            CoverGenius
+                            SnapCoverLetter
                         </h3>
                         <p className="mt-4 text-sm text-gray-500">
                             AI-powered cover letter generator to help you land your dream job.

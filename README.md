@@ -38,5 +38,5 @@ A full-stack application that generates professional cover letters using AI base
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/cover-letter-generator.git
+git clone https://github.com/shakhawat2021hossain/snap-cover-letter.git
 cd cover-letter-generator

@@ -24,6 +24,7 @@ A full-stack application that generates professional cover letters using AI base
 
 ### Backend
 - Node.js + Express
+- Mongoose
 - REST API architecture
 - LLM API integration (OpenAI/Anthropic/Google)
 
